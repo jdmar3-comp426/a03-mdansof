@@ -8,9 +8,12 @@ import {variance} from "./data/stats_helpers.js";
  * prototype functions. Very useful
  */
 export function getSum(array) {
-
+    const reducer = (prevValue, currValue) => prevValue + currValue;
+    let sum = array.reduce(reducer)
+    return sum
 }
-
+let num = [1,2,3,4]
+console.log(getSum(num))
 
 /**
  * Calculates the median of an array of numbers.
@@ -22,9 +25,12 @@ export function getSum(array) {
  * console.log(getMedian(array)); // 4.5
  */
 export function getMedian(array) {
-
+        
+    const middle = Math.floor(array.length/2);
+        let ordered = [...array].sort((a,b) => a - b);
+        return array.length % 2 !== 0 ? ordered[middle]: (ordered[middle - 1] + ordered[middle]) / 2;
 }
-
+console.log(getMedian([3,2,5,6,2,7,4,2,7,5]))
 /**
  * Calculates statistics (see below) on an array of numbers.
  * Look at the stats_helper.js file. It does variance which is used to calculate std deviation.
@@ -45,6 +51,19 @@ export function getMedian(array) {
  }
  */
 export function getStatistics(array) {
-
+    let arr = array.map((val) => {
+        return  (val - (getSum(array)/ array.length)) ** 2});
+    let obj2 = {
+    length: array.length,
+    sum: getSum(array),
+    mean: getSum(array)/ array.length,
+    median: getMedian(array),
+    min: Math.min.apply(Math, array),
+    max: Math.max.apply(Math, array),
+    variance: getSum(arr)/array.length,
+    standard_devation: Math.sqrt(getSum(arr)/array.length)
 }
+return obj2
+}
+console.log(getStatistics([3,2,4,5,5,5,2,6,7]))
 

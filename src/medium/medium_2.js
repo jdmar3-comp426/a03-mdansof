@@ -1,5 +1,5 @@
 import mpg_data from "./data/mpg_data.js";
-import {getStatistics} from "./medium_1.js";
+import {getStatistics, getSum} from "./medium_1.js";
 
 /*
 This section can be done by using the array prototype functions.
@@ -20,11 +20,13 @@ see under the methods section
  * @param {allCarStats.ratioHybrids} ratio of cars that are hybrids
  */
 export const allCarStats = {
-    avgMpg: undefined,
-    allYearStats: undefined,
-    ratioHybrids: undefined,
-};
+    avgMpg:{ city: getSum(mpg_data.map(c => c.city_mpg))/mpg_data.length,
+             highway: getSum(mpg_data.map(c => c.highway_mpg))/mpg_data.length,
+    },
 
+    allYearStats: getStatistics(mpg_data.map(c => c.year)),
+    ratioHybrids: mpg_data.filter(c => c.hybrid === true).length/mpg_data.length,
+};
 
 /**
  * HINT: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
@@ -84,6 +86,15 @@ export const allCarStats = {
  * }
  */
 export const moreStats = {
-    makerHybrids: undefined,
+    makerHybrids: mpg_data.reduce((model,value) => {if(model.some(t => t.make === value.make)){
+        return model
+    }
+        model.push({
+            make:value.make,
+            hybrids:mpg_data.filter(h => h.make === value.make).filter(x => x.hybrid).map(y => y.id)
+        })
+        return model
+    },[]).filter(element => element.hybrids.length > 0),
+    
     avgMpgByYearAndHybrid: undefined
 };

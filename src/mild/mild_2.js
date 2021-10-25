@@ -6,7 +6,10 @@
  * returns: { type: 'number', value: 4 }
  */
 export function identifyVariable(variable) {
-return "type: " + typeof variable + ", value: " + variable;
+return {
+   type: typeof variable,
+   value: variable
+}
 }
 console.log(identifyVariable(8))
 /**
@@ -23,11 +26,13 @@ console.log(identifyVariable(8))
 
  */
 export function identifyArray(array) {
+   result = []
    for(let i = 0; i < array.length; i++) {
-      array[i] =  "{ " + identifyVariable(array[i]) + " }" 
+      result[i] = identifyVariable(array[i])
    }
    return array
-};
+}
+
  console.log(identifyArray(["hello", 5, 69, [6, 7], false]))
 /**
  * mutates the object that is passed in.
@@ -46,8 +51,7 @@ export function identifyArray(array) {
  obj now does not contain the `password` field
  */
 export function removeKey(object, key) {
-   delete object[key]
-   
+   delete object[key] 
 }
 let obj = {
    name: 'Mr. Boss',
@@ -77,9 +81,8 @@ console.log(obj)
 export function removeKeyNonDestructive(object, key) {
 
 let copy = Object.assign({}, object)
-delete copy[key]
+removeKey(copy, key)
 return copy
-
 }
 let obj23 = {
    name: 'Mr. Boss',
@@ -124,10 +127,9 @@ export function removeKeys(object, keyList) {
       
    }
 
-let obj2 = {
-   name: 'Mr. Boss',
-   title: 'boss',
-   age: 33,
-   password: 'pass123'
-}
-console.log(removeKeys(obj2, ['title', 'age']))
+// let obj2 = {
+//    name: 'Mr. Boss',
+//    title: 'boss',
+//    age: 33,
+//    password: 'pass123'
+// }

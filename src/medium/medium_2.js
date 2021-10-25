@@ -1,5 +1,5 @@
 import mpg_data from "./data/mpg_data.js";
-import {getStatistics, getSum} from "./medium_1.js";
+import { getStatistics, getSum } from "./medium_1.js";
 
 /*
 This section can be done by using the array prototype functions.
@@ -20,12 +20,13 @@ see under the methods section
  * @param {allCarStats.ratioHybrids} ratio of cars that are hybrids
  */
 export const allCarStats = {
-    avgMpg:{ city: getSum(mpg_data.map(c => c.city_mpg))/mpg_data.length,
-             highway: getSum(mpg_data.map(c => c.highway_mpg))/mpg_data.length,
+    avgMpg: {
+        city: getSum(mpg_data.map(c => c.city_mpg)) / mpg_data.length,
+        highway: getSum(mpg_data.map(c => c.highway_mpg)) / mpg_data.length,
     },
 
     allYearStats: getStatistics(mpg_data.map(c => c.year)),
-    ratioHybrids: mpg_data.filter(c => c.hybrid === true).length/mpg_data.length,
+    ratioHybrids: mpg_data.filter(c => c.hybrid === true).length / mpg_data.length,
 };
 
 /**
@@ -86,15 +87,47 @@ export const allCarStats = {
  * }
  */
 export const moreStats = {
-    makerHybrids: mpg_data.reduce((model,value) => {if(model.some(t => t.make === value.make)){
-        return model
-    }
+    makerHybrids: mpg_data.reduce((model, value) => {
+        if (model.some(t => t.make === value.make)) {
+            return model
+        }
         model.push({
-            make:value.make,
-            hybrids:mpg_data.filter(h => h.make === value.make).filter(x => x.hybrid).map(y => y.id)
+            make: value.make,
+            hybrids: mpg_data.filter(h => h.make === value.make).filter(x => x.hybrid).map(y => y.id)
         })
         return model
-    },[]).filter(element => element.hybrids.length > 0),
+    }, []).filter(element => element.hybrids.length > 0),
+
+    avgMpgByYearAndHybrid: mpg_data.reduce((model, value) => {
+        if (!model[value.year]) {
+        
+        let year = value.year
+                const hybrid = {
+                    city:
+                    // mpg_data.filter(x => x.hybrid).mean
+                    getStatistics(mpg_data
+                        .filter(car => car.year === value.year).filter(car => car.hybrid).map(car => car.city_mpg)).mean,
+                    highway:
+                    getStatistics(mpg_data
+                        .filter(car => car.year === value.year).filter(car => car.hybrid).map(car => car.highway_mpg)).mean
+                };
+            
+                const notHybrid = {
+                    city:
+                    getStatistics(mpg_data
+                        .filter(car => car.year === value.year).filter(car => !car.hybrid).map(car => car.city_mpg)).mean,
+                    highway:
+                    getStatistics(mpg_data
+                        .filter(car => car.year === value.year).filter(car => !car.hybrid).map(car => car.highway_mpg)).mean
+            }
+            model[value.year] = {
+                hybrid,
+                notHybrid
+            }
+        }
     
-    avgMpgByYearAndHybrid: undefined
+
+        return model
+}, {})
 };
+console.log(moreStats.avgMpgByYearAndHybrid)

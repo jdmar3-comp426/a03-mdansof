@@ -8,7 +8,7 @@
 export function identifyVariable(variable) {
    return { type: typeof variable, value: variable }
 }
-console.log(identifyVariable(8))
+
 /**
  *
  * @param array
@@ -30,7 +30,6 @@ export function identifyArray(array) {
    return array
 }
 
-console.log(identifyArray(["hello", 5, 69, [6, 7], false]))
 /**
  * mutates the object that is passed in.
  * @param object
@@ -50,14 +49,15 @@ console.log(identifyArray(["hello", 5, 69, [6, 7], false]))
 export function removeKey(object, key) {
    delete object[key]
 }
-let obj = {
-   name: 'Mr. Boss',
-   title: 'boss',
-   age: 33,
-   password: 'pass123'
-}
-console.log(removeKey(obj, 'age'))
-console.log(obj)
+// let obj = {
+//    name: 'Mr. Boss',
+//    title: 'boss',
+//    age: 33,
+//    password: 'pass123'
+// }
+
+// console.log(removeKey(obj, 'age'))
+// console.log(obj)
 
 /**
  * Does not mutate the object passed in
@@ -81,13 +81,13 @@ export function removeKeyNonDestructive(object, key) {
    removeKey(copy, key)
    return copy
 }
-let obj23 = {
-   name: 'Mr. Boss',
-   title: 'boss',
-   age: 33,
-   password: 'pass123'
-}
-console.log(removeKeyNonDestructive(obj23, 'password'))
+// let obj23 = {
+//    name: 'Mr. Boss',
+//    title: 'boss',
+//    age: 33,
+//    password: 'pass123'
+// }
+// console.log(removeKeyNonDestructive(obj23, 'password'))
 
 
 /**

@@ -27,7 +27,7 @@ export function identifyArray(array) {
    for (let i = 0; i < array.length; i++) {
       result[i] = identifyVariable(array[i])
    }
-   return array
+   return result
 }
 
 /**

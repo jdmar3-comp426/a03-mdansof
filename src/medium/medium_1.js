@@ -12,8 +12,7 @@ export function getSum(array) {
     let sum = array.reduce(reducer)
     return sum
 }
-let num = [1,2,3,4]
-console.log(getSum(num))
+
 
 /**
  * Calculates the median of an array of numbers.
@@ -30,7 +29,7 @@ export function getMedian(array) {
         let ordered = [...array].sort((a,b) => a - b);
         return array.length % 2 !== 0 ? ordered[middle]: (ordered[middle - 1] + ordered[middle]) / 2;
 }
-console.log(getMedian([3,2,5,6,2,7,4,2,7,5]))
+// console.log(getMedian([3,2,5,6,2,7,4,2,7,5]))
 /**
  * Calculates statistics (see below) on an array of numbers.
  * Look at the stats_helper.js file. It does variance which is used to calculate std deviation.
@@ -65,5 +64,5 @@ export function getStatistics(array) {
 }
 return obj2
 }
-console.log(getStatistics([3,2,4,5,5,5,2,6,7]))
+// console.log(getStatistics([3,2,4,5,5,5,2,6,7]))
 

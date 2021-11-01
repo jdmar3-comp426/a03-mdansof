@@ -6,10 +6,7 @@
  * returns: { type: 'number', value: 4 }
  */
 export function identifyVariable(variable) {
-return {
-   type: typeof variable,
-   value: variable
-}
+   return { type: typeof variable, value: variable }
 }
 console.log(identifyVariable(8))
 /**
@@ -26,14 +23,14 @@ console.log(identifyVariable(8))
 
  */
 export function identifyArray(array) {
-   result = []
-   for(let i = 0; i < array.length; i++) {
+   let result = []
+   for (let i = 0; i < array.length; i++) {
       result[i] = identifyVariable(array[i])
    }
    return array
 }
 
- console.log(identifyArray(["hello", 5, 69, [6, 7], false]))
+console.log(identifyArray(["hello", 5, 69, [6, 7], false]))
 /**
  * mutates the object that is passed in.
  * @param object
@@ -51,7 +48,7 @@ export function identifyArray(array) {
  obj now does not contain the `password` field
  */
 export function removeKey(object, key) {
-   delete object[key] 
+   delete object[key]
 }
 let obj = {
    name: 'Mr. Boss',
@@ -80,9 +77,9 @@ console.log(obj)
  */
 export function removeKeyNonDestructive(object, key) {
 
-let copy = Object.assign({}, object)
-removeKey(copy, key)
-return copy
+   let copy = Object.assign({}, object)
+   removeKey(copy, key)
+   return copy
 }
 let obj23 = {
    name: 'Mr. Boss',
@@ -116,16 +113,16 @@ console.log(removeKeyNonDestructive(obj23, 'password'))
  */
 export function removeKeys(object, keyList) {
    let copy = Object.assign({}, object)
-   for(let i = 0; i < keyList.length; i++) {
-   for(const key in copy){
-      if(key == keyList[i]){
-         delete copy[key]
+   for (let i = 0; i < keyList.length; i++) {
+      for (const key in copy) {
+         if (key == keyList[i]) {
+            delete copy[key]
+         }
       }
    }
-}
    return copy
-      
-   }
+
+}
 
 // let obj2 = {
 //    name: 'Mr. Boss',

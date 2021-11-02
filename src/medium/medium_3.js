@@ -71,4 +71,5 @@ export function searchByYear(car_data, years) {
 let result = car_data.filter(c=> years.includes(c.year)).sort(function(x, y){
     return y.year - x.year
 })
+return result
 }

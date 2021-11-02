@@ -36,7 +36,7 @@ export const repeatDemo = () => {
 return repeat(console.log, 10, "Hello, world!")
 
 }
-console.log(repeatDemo)
+
 /**************************************************************************
  *
  * Function currying

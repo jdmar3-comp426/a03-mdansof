@@ -27,7 +27,8 @@ export const allCarStats = {
 
     allYearStats: getStatistics(mpg_data.map(c => c.year)),
     ratioHybrids: mpg_data.filter(c => c.hybrid === true).length / mpg_data.length,
-};
+}
+;
 
 /**
  * HINT: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce

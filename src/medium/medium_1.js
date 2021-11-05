@@ -64,6 +64,7 @@ export function getStatistics(array) {
         variance: getSum(arr) / array.length,
         standard_devation: Math.sqrt(getSum(arr) / array.length)}
         
+        
     return obj2
 }
 // console.log(getStatistics([3,2,4,5,5,5,2,6,7]))

@@ -62,7 +62,8 @@ export function getStatistics(array) {
         min: Math.min(...array),
         max: Math.max(...array),
         variance: getSum(arr) / array.length,
-        standard_devation: Math.sqrt(getSum(arr) / array.length)}
+        standard_devation: Math.sqrt(getSum(arr) / array.length)} + "\n"
+        
         
         
     return obj2

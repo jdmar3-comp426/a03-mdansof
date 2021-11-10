@@ -61,13 +61,10 @@ export function getStatistics(array) {
         median: getMedian(array),
         min: Math.min(...array),
         max: Math.max(...array),
-        variance: getSum(arr) / array.length,
-        standard_devation: Math.sqrt(getSum(arr) / array.length)
+        variance: variance(array, getSum(array)/array.length),
+        standard_devation: Math.sqrt(variance(array, getSum(array)/array.length))
     }
-
-        
-        
-        
+  
     return obj2
 }
 // console.log(getStatistics([3,2,4,5,5,5,2,6,7]))

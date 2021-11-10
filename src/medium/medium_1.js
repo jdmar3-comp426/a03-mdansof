@@ -53,18 +53,17 @@ export function getStatistics(array) {
     let arr = array.map((val) => {
         return (val - (getSum(array) / array.length)) ** 2
     });
-    let obj2 =
-    
-        {length: array.length,
+    let obj2 = {
+        length: array.length,
         sum: getSum(array),
         mean: getSum(array) / array.length,
         median: getMedian(array),
         min: Math.min(...array),
         max: Math.max(...array),
         variance: variance(array, getSum(array)/array.length),
-        standard_devation: Math.sqrt(variance(array, getSum(array)/array.length))
-    }
-  
+        standard_devation: undefined
+    };
+    obj2.standard_devation = Math.sqrt(obj2.variance)
     return obj2
 }
 // console.log(getStatistics([3,2,4,5,5,5,2,6,7]))
